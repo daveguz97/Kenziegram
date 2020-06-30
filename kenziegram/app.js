@@ -12,8 +12,11 @@ const path = "./public/uploads";
 
 app.get("/", (req, res) => {
   fs.readdir(path, (err, items) => {
-    console.log(items);
-    res.render(`index`);
+    const path = "./public/uploads/";
+    fs.readdir(path, function (err, items) {
+      console.log(items);
+      res.render("index", { file: `../public/uploads/${items[0]}` });
+    });
   });
 });
 
